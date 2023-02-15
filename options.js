@@ -19,12 +19,14 @@ function saveFolderColor(folder, color)
 			input.setAttribute('value', 'x');
 			input.setAttribute('data-id', folder);
 			input.addEventListener("click", deleteFolderSub);
+			input.style.margin ='0 15px';
 			const span = document.createElement('span');
 			span.innerHTML = folder;
 			span.style.color = color;
 			p.append(span);
 			p.append(input);
 			p.setAttribute('id', 'fol-' + folder);
+
 			document.body.append(p);
 		} else
 		{
@@ -51,11 +53,11 @@ function deleteFolder(folder)
 	})
 }
 
-function saveOptions(e)
+function saveOptions(event)
 {
-	e.stopPropagation();
-	e.preventDefault();
-	const form = e.target;
+	event.stopPropagation();
+	event.preventDefault();
+	const form = event.target;
 	const formFields = form.elements;
 
 	const folder = formFields.folder.value;
@@ -63,11 +65,11 @@ function saveOptions(e)
 	saveFolderColor(folder, color);
 }
 
-function deleteFolderSub(e)
+function deleteFolderSub(event)
 {
-	e.stopPropagation();
-	e.preventDefault();
-	const butt = e.target;
+	event.stopPropagation();
+	event.preventDefault();
+	const butt = event.target;
 
 	deleteFolder(butt.getAttribute('data-id'))
 }
@@ -79,24 +81,25 @@ function restoreOptions()
 	storageItem.then((res) =>
 	{
 		folders = res.folders
-		folders.forEach(e =>
+		folders.forEach(folderName =>
 		{
 
-			browser.storage.local.get(e).then((c) =>
+			browser.storage.local.get(folderName).then((c) =>
 			{
 
 				const p = document.createElement('p');
 				const input = document.createElement('input');
 				input.setAttribute('type', 'button');
 				input.setAttribute('value', 'x');
-				input.setAttribute('data-id', e);
+				input.setAttribute('data-id', folderName);
+				input.style.margin ='0 15px';
 				input.addEventListener("click", deleteFolderSub);
 				const span = document.createElement('span');
-				span.innerHTML = e;
-				span.style.color = c[e];
+				span.innerHTML = folderName;
+				span.style.color = c[folderName];
 				p.append(span);
 				p.append(input);
-				p.setAttribute('id', 'fol-' + e);
+				p.setAttribute('id', 'fol-' + folderName);
 				document.body.append(p);
 			})
 

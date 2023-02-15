@@ -3,8 +3,8 @@
   "description": "try to add folder color to outlook",
   "manifest_version": 2,
   "name": "Color outlook folders",
-  "version": "1.0",
-  "homepage_url": "https://github.com/mdn/webextensions-examples/tree/master/borderify",
+  "version": "0.0.1",
+  "homepage_url": "https://github.com/Pernifloss/firefox-ext-outlook-folder-color",
   "icons": {
     "16": "icons/ico.png"
   },
@@ -19,11 +19,6 @@
 
   "permissions": ["storage"],
 
-  "browser_specific_settings": {
-    "gecko": {
-      "id": "test@example.com"
-    }
-  },
   "browser_action": {
     "default_icon": "icons/ico.png",
     "default_title": "test",
